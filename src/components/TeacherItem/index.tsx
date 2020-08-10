@@ -5,6 +5,7 @@ import api from '../../services/api';
 
 export interface Teacher {
     id: number,
+    user_id: number;
     avatar: string,
     bio: string,
     cost: number,
@@ -20,7 +21,7 @@ interface TeacherItemProps {
 const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
     function createNewConnection() {
         api.post('connections', {
-            user_id: teacher.id,
+            user_id: teacher.user_id,
         });
     }
 
@@ -39,7 +40,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
                     Preço/Hora
                 <strong>R$ {teacher.cost}</strong>
                 </p>
-                <a target="_blank" onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`}>
+                <a target="_blank" rel="noopener noreferrer" onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`}>
                     <img src={whatsappIcon} alt="" />
                     Entrar em contato
                 </a>
